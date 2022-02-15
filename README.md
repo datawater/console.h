@@ -29,4 +29,5 @@ int main() {
   
   console(CLEAR);
   printf("I cleared the screen!");
+}
   ```
