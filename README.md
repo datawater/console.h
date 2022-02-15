@@ -8,7 +8,7 @@ You can just include this in your file, define `#CONSOLE_IMPLEMENTATION` and you
 #include <stdio.h>
 
 #define CONSOLE_IMPLEMENTATION
-#include "include/console.h"
+#include "console.h"
 
 int main() {
   console(RED);
