@@ -19,14 +19,13 @@ void cyan_win();
 #else
 #include <unistd.h>
 
-#define sleep usleep
-
 #define ANSII_COLOR_RESET "\033[0m"
 #define ANSII_COLOR_RED "\033[31m"
 #define ANSII_COLOR_GREEN "\033[32m"
 #define ANSII_COLOR_YELLOW "\033[33m"
 #define ANSII_COLOR_BLUE "\033[34m"
 #define ANSII_COLOR_MAGENTA "\033[35m"
+#define ANSII_COLOR_CYAN "\033[36m"
 #define ANSII_CLEAR "\033[2J"
 
 static void _reset();
@@ -35,6 +34,7 @@ static void _green();
 static void _yellow();
 static void _blue();
 static void _magenta();
+static void _cyan();
 static void _clear();
 
 #endif
@@ -115,6 +115,7 @@ void _red() {printf("%s", ANSII_COLOR_RED);}
 void _green() {printf("%s", ANSII_COLOR_GREEN);}
 void _yellow() {printf("%s", ANSII_COLOR_YELLOW);}
 void _blue() {printf("%s", ANSII_COLOR_BLUE);}
+void _blue() {printf("%s", ANSII_COLOR_CYAN);}
 void _magenta() {printf("%s", ANSII_COLOR_MAGENTA);}
 void _clear() {printf("%s", ANSII_CLEAR);}
 
@@ -126,8 +127,9 @@ void _clear() {printf("%s", ANSII_CLEAR);}
 #define YELLOW 3
 #define BLUE 4
 #define MAGENTA 5
-#define RESET 6
-#define CLEAR 7
+#define CYAN 6
+#define RESET 7
+#define CLEAR 8
 
 extern void console(int c) {
 	switch (c) {
@@ -166,6 +168,13 @@ extern void console(int c) {
 				_magenta();
 			#endif
 		break;
+		case CYAN:
+			#ifdef _WIN32
+				cyan_win();
+			#else
+				_cyan();
+			#endif
+
 		case RESET:
 			#ifdef _WIN32
 				reset_win();
