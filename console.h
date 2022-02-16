@@ -101,7 +101,7 @@ static void win_set_attributes(int fg, int bg) {
 }
 
 void reset_win() {win_set_attributes(-1, -1);}
-void red_win() {win_set_attributes(FOREGROUND_RED, -1);}
+void red_win() {win_set_attributes(FOREGROUND_RED | FOREGROUND_INTENSITY, -1);}
 void green_win() {win_set_attributes(FOREGROUND_GREEN, -1);}
 void yellow_win() {win_set_attributes(FOREGROUND_RED | FOREGROUND_GREEN, -1);}
 void blue_win() {win_set_attributes(FOREGROUND_BLUE, -1);}
