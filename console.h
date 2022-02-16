@@ -174,6 +174,7 @@ extern void console(int c) {
 			#else
 				_cyan();
 			#endif
+		break;
 
 		case RESET:
 			#ifdef _WIN32
