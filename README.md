@@ -1,9 +1,9 @@
 # console.h
 A very bad cross-platform self-documented terminal library
 
-You can just include this in your file, define `#CONSOLE_IMPLEMENTATION` and youre done
+You can just include this in your file, define `CONSOLE_IMPLEMENTATION` and youre done
 
-#example:
+# example:
 ```c
 #include <stdio.h>
 
