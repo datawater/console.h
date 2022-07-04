@@ -1,11 +1,14 @@
 #ifndef CONSOLE_H
-
 #define CONSOLE_H
 
-#ifdef _WIN32
-#include <windows.h>
+#include <stdio.h>
+#include <stdlib.h>
 
-void clear_win();
+void console(int c);
+void print_c(char* s, int c);
+
+#ifdef _WIN32
+
 static WORD win_default_attributes(HANDLE hConsole);
 static void win_set_attributes(int fg, int bg);
 void reset_win();
@@ -16,17 +19,9 @@ void blue_win();
 void magenta_win();
 void cyan_win();
 
-#else
-#include <unistd.h>
+#endif // _WIN32
 
-#define ANSII_COLOR_RESET "\033[0m"
-#define ANSII_COLOR_RED "\033[31m"
-#define ANSII_COLOR_GREEN "\033[32m"
-#define ANSII_COLOR_YELLOW "\033[33m"
-#define ANSII_COLOR_BLUE "\033[34m"
-#define ANSII_COLOR_MAGENTA "\033[35m"
-#define ANSII_COLOR_CYAN "\033[36m"
-#define ANSII_CLEAR "\033[2J"
+#else
 
 static void _reset();
 static void _red();
@@ -37,11 +32,12 @@ static void _magenta();
 static void _cyan();
 static void _clear();
 
-#endif
+#endif // ELSE UNIX/APPLE
 
 #ifdef CONSOLE_IMPLEMENTATION
 
 #ifdef _WIN32
+#include <windows.h>
 
 void clear_win() {
     COORD topLeft  = { 0, 0 };
@@ -108,19 +104,28 @@ void blue_win() {win_set_attributes(FOREGROUND_BLUE, -1);}
 void magenta_win() {win_set_attributes(FOREGROUND_RED | FOREGROUND_BLUE, -1);}
 void cyan_win() {win_set_attributes(FOREGROUND_GREEN | FOREGROUND_BLUE, -1);}
 
+#endif // WIN32 IMPL
 #else
+
+#define ANSII_COLOR_RESET "\033[0m"
+#define ANSII_COLOR_RED "\033[31m"
+#define ANSII_COLOR_GREEN "\033[32m"
+#define ANSII_COLOR_YELLOW "\033[33m"
+#define ANSII_COLOR_BLUE "\033[34m"
+#define ANSII_COLOR_MAGENTA "\033[35m"
+#define ANSII_COLOR_CYAN "\033[36m"
+#define ANSII_CLEAR "\033[2J"
 
 void _reset() {printf("%s", ANSII_COLOR_RESET);}
 void _red() {printf("%s", ANSII_COLOR_RED);}
 void _green() {printf("%s", ANSII_COLOR_GREEN);}
 void _yellow() {printf("%s", ANSII_COLOR_YELLOW);}
 void _blue() {printf("%s", ANSII_COLOR_BLUE);}
-void _blue() {printf("%s", ANSII_COLOR_CYAN);}
+void _cyan() {printf("%s", ANSII_COLOR_CYAN);}
 void _magenta() {printf("%s", ANSII_COLOR_MAGENTA);}
 void _clear() {printf("%s", ANSII_CLEAR);}
 
-#endif
-#endif
+#endif // ELSE UNIX IMPL
 
 #define RED 1
 #define GREEN 2
@@ -131,7 +136,7 @@ void _clear() {printf("%s", ANSII_CLEAR);}
 #define RESET 7
 #define CLEAR 8
 
-extern void console(int c) {
+void console(int c) {
 	switch (c) {
 		case RED:
 			#ifdef _WIN32
@@ -197,4 +202,8 @@ extern void console(int c) {
 	}
 }
 
-#endif
+void print_c(char* s, int c) {
+    console(c);
+    printf(s);
+    console(RESET);
+}
