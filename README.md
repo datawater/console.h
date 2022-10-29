@@ -1,5 +1,5 @@
 # console.h
-A very bad but small, terminal library
+A very bad, but small terminal library
 
 # example:
 ```c
