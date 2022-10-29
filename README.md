@@ -1,7 +1,5 @@
 # console.h
-A very bad cross-platform self-documented terminal library
-
-You can just include this in your file, define `CONSOLE_IMPLEMENTATION` and youre done
+A very bad but small, terminal library
 
 # example:
 ```c
@@ -10,24 +8,9 @@ You can just include this in your file, define `CONSOLE_IMPLEMENTATION` and your
 #define CONSOLE_IMPLEMENTATION
 #include "console.h"
 
-int main() {
-  console(RED);
-  printf("Im Red!");
-  console(RESET);
-  console(GREEN);
-  printf("Im Green!");
-  console(RESET);
-  console(blue);
-  printf("Im Blue!");
-  console(RESET):
-  console(MAGENTA);
-  printf("Im magenta!");
-  console(RESET);
-  console(CYAN);
-  printf("Im Cyan!");
-  console(RESET);
-  
-  console(CLEAR);
-  printf("I cleared the screen!");
+int main(void) {
+  console_init();
+  console_printc(STDOUT,  FLRED, "Hello, World!\n");
+  return 0;
 }
   ```
