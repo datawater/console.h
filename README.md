@@ -10,7 +10,7 @@ A very bad, but small terminal library
 
 int main(void) {
   console_init();
-  console_printc(STDOUT,  FLRED, "Hello, World!\n");
+  console_printc(stdout,  FLRED, "Hello, World!\n");
   return 0;
 }
   ```
