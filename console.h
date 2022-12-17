@@ -62,7 +62,7 @@ int  console_printc(FILE* out, int color, const char* format, ...) __CHECK_PRINT
 void console_error(const char* format, ...) __CHECK_PRINTF__(1,2);
 void console_warn(const char* format, ...) __CHECK_PRINTF__(1,2);
 void console_info(const char* format, ...) __CHECK_PRINTF__(1,2);
-char* console_readline(FILE* from);
+char* console_readline();
 
 #ifdef CONSOLE_IMPLEMENTATION
 #include <stdarg.h>
@@ -419,7 +419,7 @@ void console_info  (const char* format, ...) {va_list args; va_start(args,format
 #ifndef SHELL_READLINE_LIMIT_PR
 #define SHELL_READLINE_LIMIT_PR 512
 #endif
-char* console_readline(FILE* from) {
+char* console_readline() {
     int buffer_size = SHELL_READLINE_LIMIT_PR; int p = 0;
     char* buffer = malloc(sizeof(char) * buffer_size);
     if (buffer == NULL) {return 0;}

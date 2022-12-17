@@ -62,3 +62,4 @@ int  console_printc(FILE* out, int color, const char* format, ...) __CHECK_PRINT
 void console_error(const char* format, ...) __CHECK_PRINTF__(1,2);
 void console_warn(const char* format, ...) __CHECK_PRINTF__(1,2);
 void console_info(const char* format, ...) __CHECK_PRINTF__(1,2);
+char* console_readline();
