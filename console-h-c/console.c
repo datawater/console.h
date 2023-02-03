@@ -74,7 +74,7 @@ int  __INITED_OR_NOT__ = 0;
 
 void console_init() {
     __PIPEDORNOT__ = ((int*) malloc(sizeof(int)));
-    *__PIPEDORNOT__ = (isatty(STDOUT_FILENO)) || (isatty(STDERR_FILENO));
+    *__PIPEDORNOT__ = (isatty(1));
     __INITED_OR_NOT__ = 1;
 }
 
